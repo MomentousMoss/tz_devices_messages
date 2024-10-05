@@ -3,23 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@id/navigation_devices">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.momentousmoss.tz_devices_messages.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_devices"
+        android:name="com.momentousmoss.tz_devices_messages.ui.devices.DevicesFragment"
+        android:label="@string/navigation_title_devices"
+        tools:layout="@layout/fragment_devices" >
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.momentousmoss.tz_devices_messages.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_messages"
+        android:name="com.momentousmoss.tz_devices_messages.ui.messages.MessagesFragment"
+        android:label="@string/navigation_title_messages"
+        tools:layout="@layout/fragment_messages" />
 
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.momentousmoss.tz_devices_messages.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+    <action
+        android:id="@+id/toDevices"
+        app:destination="@id/navigation_devices"
+        app:popUpTo="@id/mobile_navigation"/>
+
+    <action
+        android:id="@+id/toMessages"
+        app:destination="@id/navigation_messages"
+        app:popUpTo="@id/mobile_navigation"/>
 </navigation>

@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">tz_devices_messages</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+
+    <string name="devices_title">Devices List</string>
+    <string name="messages_title">Messages</string>
+
+    <string name="navigation_title_home">Home</string>
+    <string name="navigation_title_devices">Devs</string>
+    <string name="navigation_title_apparatuses">Apparatuses</string>
+    <string name="navigation_title_messages">Messages</string>
+    <string name="navigation_title_statistics">Statistics</string>
+    <string name="navigation_title_settings">Settings</string>
 </resources>

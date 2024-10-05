@@ -1,35 +1,144 @@
 package com.momentousmoss.tz_devices_messages
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.SuggestionChip
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.momentousmoss.tz_devices_messages.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    private val selectedNavigationTitleState : MutableState<String?> = mutableStateOf(null)
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
-        val navView: BottomNavigationView = binding.navView
+        setContent {
+            SetActivityView()
+        }
+    }
 
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
-            )
+    @Composable
+    private fun SetActivityView() {
+        Column {
+            SetNavigationView()
+            SetNavigationDivider()
+            SetFragmentView()
+        }
+    }
+
+    @Composable
+    private fun SetNavigationView() {
+        val selectedNavigationTitle by remember { selectedNavigationTitleState }
+        LazyRow(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 8.dp, top = 8.dp, end = 8.dp, bottom = 0.dp)
+        ) {
+            setDefaultSelectedNavigationTitleState()
+            item {
+                NavigationItem(
+                    getString(R.string.navigation_title_home),
+                    selectedNavigationTitle = selectedNavigationTitle
+                )
+            }
+            item {
+                NavigationItem(
+                    getString(R.string.navigation_title_devices),
+                    destinationId = R.id.toDevices,
+                    selectedNavigationTitle = selectedNavigationTitle
+                )
+            }
+            item {
+                NavigationItem(
+                    getString(R.string.navigation_title_apparatuses),
+                    selectedNavigationTitle = selectedNavigationTitle
+                )
+            }
+            item {
+                NavigationItem(
+                    getString(R.string.navigation_title_messages),
+                    destinationId = R.id.toMessages,
+                    selectedNavigationTitle = selectedNavigationTitle
+                )
+            }
+            item {
+                NavigationItem(
+                    getString(R.string.navigation_title_statistics),
+                    selectedNavigationTitle = selectedNavigationTitle
+                )
+            }
+            item {
+                NavigationItem(
+                    getString(R.string.navigation_title_settings),
+                    selectedNavigationTitle = selectedNavigationTitle
+                )
+            }
+        }
+    }
+
+    private fun setDefaultSelectedNavigationTitleState() {
+        selectedNavigationTitleState.value=
+            findNavController(R.id.fragment_container).graph.findStartDestination().label.toString()
+    }
+
+    @Composable
+    private fun NavigationItem(
+        titleString: String,
+        destinationId: Int? = null,
+        selectedNavigationTitle: String?
+    ) {
+        SuggestionChip(
+            onClick = {
+                findNavController(R.id.fragment_container).apply {
+                    destinationId?.let {
+                        navigate(it)
+                        selectedNavigationTitleState.value = titleString
+                    }
+                }
+            },
+            label = { Text(
+                color = if (titleString != selectedNavigationTitle) Color.Black else Color.Blue,
+                text = titleString
+            ) }
         )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+    }
+
+    @Composable
+    private fun SetNavigationDivider() {
+        HorizontalDivider(
+            color = Color.Black,
+            modifier = Modifier.padding(horizontal = 48.dp, vertical = 8.dp)
+        )
+    }
+
+    @Composable
+    private fun SetFragmentView() {
+        AndroidView(
+            modifier = Modifier.fillMaxSize(),
+            factory = { binding.root }
+        )
     }
 }

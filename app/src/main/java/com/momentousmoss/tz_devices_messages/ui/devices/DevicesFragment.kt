@@ -1,4 +1,4 @@
-package com.momentousmoss.tz_devices_messages.ui.home
+package com.momentousmoss.tz_devices_messages.ui.devices
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.momentousmoss.tz_devices_messages.databinding.FragmentHomeBinding
+import com.momentousmoss.tz_devices_messages.databinding.FragmentDevicesBinding
 
-class HomeFragment : Fragment() {
+class DevicesFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentDevicesBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,14 +22,14 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        val devicesViewModel =
+            ViewModelProvider(this).get(DevicesViewModel::class.java)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentDevicesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
+        devicesViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
