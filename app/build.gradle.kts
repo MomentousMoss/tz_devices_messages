@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
+    id("kotlin-kapt")
 }
 
 android {
@@ -47,6 +48,10 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.insert.koin.koin.core)
     implementation(libs.koin.android)
+    implementation(libs.androidx.room)
+    implementation(libs.androidx.room.ktx)
+    annotationProcessor(libs.androidx.room.annotation.processor)
+    kapt(libs.androidx.room.annotation.processor)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
