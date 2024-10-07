@@ -1,9 +1,9 @@
 # tz_devices_messages
 
-**Затрачено:** ~ часа
+**Затрачено:** ~ 19 часов
 ***
 **Release build:**
-
+[tz_devices_messages/tz_devices_messages.apk](https://github.com/MomentousMoss/tz_devices_messages/blob/main/tz_devices_messages.apk)
 ***
 **Задание:**
 
