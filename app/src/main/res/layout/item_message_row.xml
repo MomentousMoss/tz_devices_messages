@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/id"
+                style="@style/MessageListItem"
+                android:text="@string/message_item_id"/>
+
+            <TextView
+                android:id="@+id/time"
+                style="@style/MessageListItem"
+                android:text="@string/message_item_time"/>
+
+            <TextView
+                android:id="@+id/date"
+                style="@style/MessageListItem"
+                android:text="@string/message_item_date"/>
+
+
+            <TextView
+                android:id="@+id/author"
+                style="@style/MessageListItem"
+                android:text="@string/messages_send_new_title_author"/>
+
+            <TextView
+                android:id="@+id/text"
+                style="@style/MessageListItem"
+                android:text="@string/messages_send_new_title_text"/>
+
+        </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+    </LinearLayout>
+
+</layout>

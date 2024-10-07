@@ -38,6 +38,7 @@ android {
     buildFeatures {
         viewBinding = true
         compose = true
+        dataBinding = true
     }
 }
 
@@ -50,6 +51,7 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.androidx.room)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.databinding.runtime)
     annotationProcessor(libs.androidx.room.annotation.processor)
     kapt(libs.androidx.room.annotation.processor)
 

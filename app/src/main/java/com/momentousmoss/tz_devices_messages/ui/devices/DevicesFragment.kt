@@ -125,17 +125,19 @@ class DevicesFragment : Fragment() {
                 .padding(horizontal = 8.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
+            val deviceTitleItemModifier = Modifier.weight(1f)
             DeviceParametersEnum.entries.forEach {
-                DevicesListTitleItem(it.valueText)
+                DevicesListTitleItem(it.valueText, deviceTitleItemModifier)
             }
         }
     }
 
     @Composable
-    fun DevicesListTitleItem(titleText: String) {
+    fun DevicesListTitleItem(titleText: String, modifier: Modifier) {
         Text(
             text = titleText,
-            style = TextStyle(fontSize = 12.sp, color = Color.Black, fontWeight = FontWeight.Bold)
+            style = TextStyle(fontSize = 12.sp, color = Color.Black, fontWeight = FontWeight.Bold),
+            modifier = modifier
         )
     }
 
@@ -148,23 +150,27 @@ class DevicesFragment : Fragment() {
             }
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 16.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp, vertical = 16.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
-                DevicesListItem(device.name)
-                DevicesListItem(device.type)
-                DevicesListItem(device.status)
-                DevicesListItem(device.mac)
-                DevicesListItem(device.subscriptions)
+                val deviceItemModifier = Modifier.weight(1f)
+                DevicesListItem(device.name, deviceItemModifier)
+                DevicesListItem(device.type, deviceItemModifier)
+                DevicesListItem(device.status, deviceItemModifier)
+                DevicesListItem(device.mac, deviceItemModifier)
+                DevicesListItem(device.subscriptions, deviceItemModifier)
             }
         }
     }
 
     @Composable
-    fun DevicesListItem(valueText: String) {
+    fun DevicesListItem(valueText: String, modifier: Modifier) {
         Text(
             text = valueText,
-            style = TextStyle(fontSize = 10.sp, color = Color.Black)
+            style = TextStyle(fontSize = 10.sp, color = Color.Black),
+            modifier = modifier
         )
     }
 

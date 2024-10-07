@@ -4,6 +4,22 @@
     <string name="devices_title">Devices List</string>
     <string name="messages_title">Messages</string>
 
+    <string name="messages_title_period">Period: Today</string>
+    <string name="messages_title_name">Name:</string>
+    <string name="messages_title_received">Received Messages</string>
+    <string name="messages_title_sent">Sent Messages</string>
+    <string name="messages_send_new_title">Send new message</string>
+    <string name="messages_send_new_title_author">Author</string>
+    <string name="messages_send_new_title_text">Text</string>
+    <string name="messages_send_new_button">Send</string>
+    <string name="message_send_new_error">Поле не должно быть пустым</string>
+
+    <string name="message_item_id">#</string>
+    <string name="message_item_time">Time</string>
+    <string name="message_item_date">Date</string>
+    <string name="message_item_author">Author</string>
+    <string name="message_item_text">Text</string>
+
     <string name="navigation_title_home">Home</string>
     <string name="navigation_title_devices">Devs</string>
     <string name="navigation_title_apparatuses">Apparatuses</string>
